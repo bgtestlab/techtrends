@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "default": {
+      "format": "%(levelname)s:%(name)s:%(message)s"
+    },
+    "app": {
+      "format": "%(levelname)s:%(name)s:%(asctime)s, %(message)s",
+      "datefmt": "%Y/%m/%d, %H:%M:%S"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "formatter": "default",
+      "stream": "ext://sys.stdout"
+    },
+    "console-app": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "formatter": "app",
+      "stream": "ext://sys.stdout"
+    },
+    "console-app-error": {
+      "class": "logging.StreamHandler",
+      "level": "ERROR",
+      "formatter": "app",
+      "stream": "ext://sys.stderr"
+    }
+  },
+  "root": {
+    "level": "DEBUG",
+    "handlers": ["console"]
+  },
+  "loggers": {
+    "app": {
+      "level": "DEBUG",
+      "handlers": ["console-app", "console-app-error"],
+      "propagate": false
+    }
+  }
+}
