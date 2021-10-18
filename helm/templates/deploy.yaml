@@ -6,10 +6,10 @@ metadata:
   labels:
     app: techtrends
   name: techtrends
-  namespace: {{ .Values.namespace.name }} 
+  namespace: {{ .Values.namespace.name }}
 spec:
   ## Set the number of replicas.
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: techtrends
@@ -21,38 +21,34 @@ spec:
         app: techtrends
     spec:
       containers:
-      - image: {{ .Values.image.repository }} {{ .Values.image.tag }}
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }} 
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: techtrends
         ## Expose the port the container is listening on.
         ports:
-        - containerPort: {{ Values.
-          protocol: TCP
+        - containerPort: {{ .Values.containerPort }}
+          protocol: {{ .Values.service.protocol }}
         ## Define the rules for the liveness probes.
-        ## For example, verify the application on the main route `/`,
-        ## on application port 3111. If the application is not responsive, then the pod will be restarted automatically.
         livenessProbe:
            httpGet:
-             path: /healthz
-             port: 3111
+             path: {{ .Values.livenessProbe.path }}
+             port: {{ .Values.containerPort }}
         ## Define the rules for the readiness probes.
-        ## For example, verify the application on the main route `/`,
-        ## on application port 3111. If the application is responsive, then traffic will be sent to this pod.
         readinessProbe:
            httpGet:
-             path: /healthz
-             port: 3111
+             path: {{ .Values.readinessProbe.path }}
+             port: {{ .Values.containerPort }}
         resources:
         ## The resource requests guarantees that the desired amount
-        ## CPU and memory is allocated for a pod. In this example,
-        ## the pod will be allocated with 64 Mebibytes and 250 miliCPUs.
+        ## CPU and memory is allocated for a pod. 
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: {{ .Values.resources.requests.memory }} 
+            cpu: {{ .Values.resources.requests.cpu }}
         ## The resource limits ensure that the application is not consuming
-        ## more than the specified CPU and memory values. In this example,
-        ## the pod will not surpass 128 Mebibytes and 500 miliCPUs.
+        ## more than the specified CPU and memory values.
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
 
 status: {}
+
