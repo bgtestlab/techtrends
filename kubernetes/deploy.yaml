@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+## Set the parameters that make the object identifiable, such as its name, namespace, and labels.
+metadata:
+  creationTimestamp: null
+  labels:
+    app: techtrends
+  name: techtrends
+  namespace: {{ .Values.namespace.name }}
+spec:
+  ## Set the number of replicas.
+  replicas: {{ .Values.replocaCount }}
+  selector:
+    matchLabels:
+      app: techtrends
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: techtrends
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }} 
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: techtrends
+        ## Expose the port the container is listening on.
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+          protocol: {{ .Values.service.protocol }}
+        ## Define the rules for the liveness probes.
+        livenessProbe:
+           httpGet:
+             path: {{ .Values.livenessProbe.path }}
+             port: {{ .Values.containerPort }}
+        ## Define the rules for the readiness probes.
+        readinessProbe:
+           httpGet:
+             path: {{ .Values.readinessProbe.path }}
+             port: {{ .Values.containerPort }}
+        resources:
+        ## The resource requests guarantees that the desired amount
+        ## CPU and memory is allocated for a pod. 
+          requests:
+            memory: {{ .Values.resources.requests.memory }} 
+            cpu: {{ .Values.resources.requests.cpu }}
+        ## The resource limits ensure that the application is not consuming
+        ## more than the specified CPU and memory values.
+          limits:
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
+
+status: {}

@@ -1,0 +1,33 @@
+namespace:
+  name: staging
+ 
+image:
+  repository: boramgwon/techtrends 
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
+
+service:
+  port: 5111
+  protocol: TCP
+  targetPort: 3111
+  type: ClusterIP
+
+resources:
+  requests:
+    memory: "90Mi"
+    cpu: "300m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+containerPort: 3111
+
+livenessProbe:
+  path: /healthz
+
+readinessProbe:
+  path: /healthz
+
+
