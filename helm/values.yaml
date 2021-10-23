@@ -8,26 +8,36 @@ image:
 
 replicaCount: 1
 
+strategy:
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 25%
+  type: RollingUpdate
+
 service:
   port: 4111
   protocol: TCP
   targetPort: 3111
   type: ClusterIP
 
-resources:
-  requests:
-    memory: "64Mi"
-    cpu: "250m"
-  limits:
-    memory: "128Mi"
-    cpu: "500m"
-
 containerPort: 3111
 
+resources:
+  requests:
+    memory: 64Mi
+    cpu: 250m
+  limits:
+    memory: 128Mi
+    cpu: 500m
+
 livenessProbe:
-  path: /healthz
+  httpGet:
+    path: /healthz
+    port: 3111
 
 readinessProbe:
-  path: /healthz
+  httpGet:
+    path: /healthz
+    port: 3111
 
 

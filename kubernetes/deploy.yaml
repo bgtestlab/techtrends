@@ -13,7 +13,12 @@ spec:
   selector:
     matchLabels:
       app: techtrends
-  strategy: {}
+  ## Set rolling update
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       creationTimestamp: null

@@ -5,26 +5,31 @@ docker run -d -p 7111:3111 techtrends
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: on
-INFO:werkzeug: * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
-INFO:werkzeug: * Restarting with stat
-WARNING:werkzeug: * Debugger is active!
-INFO:werkzeug: * Debugger PIN: 171-479-787
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:18:15] "GET / HTTP/1.1" 200 -
-DEBUG:app:2021/10/17, 06:19:17, Article "2020 CNCF Annual Report" retrieved!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:17] "GET /1 HTTP/1.1" 200 -
-ERROR:app:2021/10/17, 06:19:21, Non-existing article is accessed!
-ERROR:app:2021/10/17, 06:19:21, Non-existing article is accessed!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:21] "GET /22 HTTP/1.1" 404 -
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:23] "GET / HTTP/1.1" 200 -
-DEBUG:app:2021/10/17, 06:19:27, About Us is accessed!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:27] "GET /about HTTP/1.1" 200 -
-DEBUG:app:2021/10/17, 06:19:31, A new article is created!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:31] "GET /create HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:37] "POST /create HTTP/1.1" 302 -
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 127.0.0.1:3111
-INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 06:19:42] "GET / HTTP/1.1" 200 -
-DEBUG:urllib3.connectionpool:http://127.0.0.1:3111 "GET / HTTP/1.1" 200 1793
-INFO:app:2021/10/17, 06:19:42, Status request successful!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:42] "GET /healthz HTTP/1.1" 200 -
-INFO:app:2021/10/17, 06:19:47, Metrics request successful!
-INFO:werkzeug:172.17.0.1 - - [17/Oct/2021 06:19:47] "GET /metrics HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-320-928
+172.17.0.1 - - [23/Oct/2021 07:25:29] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [23/Oct/2021 07:25:29] "GET /static/css/main.css HTTP/1.1" 200 -
+172.17.0.1 - - [23/Oct/2021 07:25:29] "GET /favicon.ico HTTP/1.1" 404 -
+DEBUG:app:2021/10/23, 07:28:52, Article "2020 CNCF Annual Report" retrieved!
+DEBUG:app:2021/10/23, 07:28:52, Article "2020 CNCF Annual Report" retrieved!
+172.17.0.1 - - [23/Oct/2021 07:28:52] "GET /1 HTTP/1.1" 200 -
+DEBUG:app:2021/10/23, 07:29:17, About Us is accessed!
+DEBUG:app:2021/10/23, 07:29:17, About Us is accessed!
+172.17.0.1 - - [23/Oct/2021 07:29:17] "GET /about HTTP/1.1" 200 -
+ERROR:app:2021/10/23, 07:29:36, Non-existing article is accessed!
+ERROR:app:2021/10/23, 07:29:36, Non-existing article is accessed!
+172.17.0.1 - - [23/Oct/2021 07:29:36] "GET /33 HTTP/1.1" 404 -
+DEBUG:app:2021/10/23, 07:29:41, A new article is created!
+DEBUG:app:2021/10/23, 07:29:41, A new article is created!
+172.17.0.1 - - [23/Oct/2021 07:29:41] "GET /create HTTP/1.1" 200 -
+172.17.0.1 - - [23/Oct/2021 07:29:45] "POST /create HTTP/1.1" 302 -
+172.17.0.1 - - [23/Oct/2021 07:29:45] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2021 07:31:16] "GET / HTTP/1.1" 200 -
+INFO:app:2021/10/23, 07:31:16, Status request successful!
+INFO:app:2021/10/23, 07:31:16, Status request successful!
+172.17.0.1 - - [23/Oct/2021 07:31:16] "GET /healthz HTTP/1.1" 200 -
+INFO:app:2021/10/23, 07:31:25, Metrics request successful!
+INFO:app:2021/10/23, 07:31:25, Metrics request successful!
+172.17.0.1 - - [23/Oct/2021 07:31:25] "GET /metrics HTTP/1.1" 200 -
